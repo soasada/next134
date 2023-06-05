@@ -1,5 +1,6 @@
 import {cookies} from 'next/headers';
 import {NextResponse} from 'next/server';
+import {revalidatePath} from 'next/cache';
 
 export async function POST(request: Request) {
     // login success
@@ -12,5 +13,6 @@ export async function POST(request: Request) {
         path: '/',
     });
     console.log('Login success');
+    revalidatePath('/'); // does not work
     return NextResponse.json({ok: 'ok'});
 }
